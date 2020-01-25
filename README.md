@@ -13,7 +13,18 @@ Usando Cores em Hexadecimal
 > - Block_COLOR: GREEN
 
 # LOGIC GAME
-> O carro se move para esquerdo e para o lado direito de acordo com suas coordenadas.
-> As Teclas de atalho são:
-> -> : Para o lado direito da tela;
-> <- : Para o lado esquerdo da tela.
+> - O carro se move para esquerdo e para o lado direito de acordo com suas coordenadas.
+> #### As Teclas de atalho são:
+> - -> : Para o lado direito da tela;
+> - <- : Para o lado esquerdo da tela.
+
+# Functions
+
+- Button
+> # parameters
+> - x:
+> - y:
+> - width: Tamanho Horizontal do Botão
+> - height: Tamanho Vertical do Botão
+
+

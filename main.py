@@ -19,6 +19,8 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BRIGHT_GREEN = (0, 255, 0)
+BRIGHT_RED = (255, 0, 0)
 BLOCK_COLOR = (53,115,255)
 
 # Define size width the of car
@@ -62,6 +64,51 @@ def message_display(text):
 # Crash Message
 def crash():
     message_display('You Crashed')
+
+# Creating Button
+def button(msg, x, y, width, height, ic, ac, action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if x + width > mouse[0] > x and y + height > mouse[1] > y:
+        pygame.draw.rect(screen, ac, (x,y,width,height))
+
+        if click[0] == 1 and action != None:
+            action()
+    else:
+        pygame.draw.rect(screen, ic, (x,y,width, height))
+
+    smallText = pygame.font.SysFont("SIXTY.TTF", 20)
+    textSurf, textRect = text_objects(msg, smallText)
+    textRect.center = ((x+(width/2), (y+(height/2))))
+    screen.blit(textSurf, textRect)
+
+def quit_game():
+    pygame.quit()
+    quit()
+
+# Intro
+def game_intro():
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            #print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        screen.fill(BLACK)
+        largeText = pygame.font.Font('SIXTY.TTF', 110)
+        TextSurf, TextRect = text_objects("A bit Racey", largeText)
+        TextRect.center = ((SCREEN_WIDTH/2), (SCREEN_HEIGHT/2))
+        screen.blit(TextSurf, TextRect)
+        
+        
+        button("GO!",150,450,100,50,GREEN,BRIGHT_GREEN,game_loop)
+        button("Quit!",550,450,100,50,RED,BRIGHT_RED,quit_game)
+        pygame.display.update()
+        clock.tick(15)
 
 # Main Loop
 def game_loop():
@@ -126,6 +173,7 @@ def game_loop():
         pygame.display.update()
         clock.tick(60)
 
+game_intro()
 game_loop()
 pygame.quit()
 quit()
